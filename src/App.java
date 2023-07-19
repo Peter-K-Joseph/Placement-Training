@@ -14,8 +14,12 @@ public class App {
         // numberFormat.main();
         // NeonNumber neonNumber = new NeonNumber();
         // neonNumber.main();
-        BiggestNumber biggestNumber = new BiggestNumber();
-        biggestNumber.main();
+        // BiggestNumber biggestNumber = new BiggestNumber();
+        // biggestNumber.main();
+        // MatrixArrayCalcualtor matrixArrayCalcualtor = new MatrixArrayCalcualtor();
+        // matrixArrayCalcualtor.main();
+        ShortenString shortenString = new ShortenString();
+        shortenString.main();
     }
 }
 
@@ -383,7 +387,7 @@ class NumberFormat {
     }
 
     void numFormat(int num) {
-        for (; num > 0; num-=2) {
+        for (; num > 0; num -= 2) {
             for (int i = 1; i <= num; i++) {
                 System.out.print(i + " ");
             }
@@ -411,7 +415,7 @@ class NeonNumber {
             square /= 10;
         }
         return sum == number;
-    } 
+    }
 }
 
 class BiggestNumber {
@@ -436,5 +440,109 @@ class BiggestNumber {
             }
         }
         return biggest;
+    }
+}
+
+class MatrixArrayCalcualtor {
+    public void main() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of apples: ");
+        int row = sc.nextInt();
+        int arr[][] = new int[row][];
+        System.out.println("Enter the number of apples in each row: ");
+        for (int i = 0; i < row; i++) {
+            int col = sc.nextInt();
+            arr[i] = new int[col];
+            System.out.println("Enter the number of apples in row " + (i + 1) + ": ");
+            for (int j = 0; j < col; j++) {
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        System.out.println("The total number of apples are " + totalApples(arr));
+        sc.close();
+    }
+
+    int totalApples(int[][] arr) {
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < (arr[i]).length; j++) {
+                sum += arr[i][j];
+            }
+        }
+        return sum;
+    }
+}
+
+class ArrayCompartibilityCheck {
+    public void main() {
+        Scanner sc = new Scanner(System.in);
+        int[][] arr = new int[2][5];
+        System.out.println("Enter the elements of the array: ");
+        for (int i = 0; i < 2; i++) {
+            System.out.println("Enter the elements of the row " + (i + 1) + ": ");
+            for (int j = 0; j < 5; j++) {
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        System.out.println("The array is " + ((isCompatible(arr)) ? "compatible" : "not compatible"));
+        sc.close();
+    }
+
+    boolean isCompatible(int[][] arr) {
+        if (arr[0].length != arr[1].length) {
+            return false;
+        }
+        for (int i = 0; i < arr[0].length; i++) {
+            if (arr[0][i] >= arr[1][i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+class MaximumInEachRow {
+    public void main() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of rows: ");
+        int row = sc.nextInt();
+        int[][] arr = new int[row][];
+        System.out.println("Enter the number of elements in each row: ");
+        for (int i = 0; i < row; i++) {
+            int col = sc.nextInt();
+            arr[i] = new int[col];
+            System.out.println("Enter the elements of row " + (i + 1) + ": ");
+            for (int j = 0; j < col; j++) {
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        System.out.println("The maximum elements in each row are: ");
+        for (int i = 0; i < row; i++) {
+            System.out.println(maximum(arr[i]));
+        }
+    }
+
+    int maximum(int[] arr) {
+        int max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            max = (arr[i] > max) ? arr[i] : max;
+        }
+        return max;
+    }
+}
+
+class ShortenString {
+    public void main() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the string: ");
+        String str = sc.nextLine();
+        System.out.println("The shortened string is " + shortenString(str));
+        sc.close();
+    } 
+
+    String shortenString(String str) {
+        String[] words = str.split("");
+        String result = words[0] + words.length + words[words.length - 1];
+        return result;
     }
 }
